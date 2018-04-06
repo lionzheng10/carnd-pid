@@ -12,8 +12,8 @@ using json = nlohmann::json;
 
 // For converting back and forth between radians and degrees.
 constexpr double pi() { return M_PI; }
-double deg2rad(double x) { return x * pi() / 180; }
-double rad2deg(double x) { return x * 180 / pi(); }
+//double deg2rad(double x) { return x * pi() / 180; }
+//double rad2deg(double x) { return x * 180 / pi(); }
 
 auto start = std::chrono::system_clock::now();
 
@@ -41,7 +41,7 @@ int main()
   PID pid_s, pid_t;
   double last_steer = 0;
   // TODO: Initialize the pid variable.
-  pid_s.Init(0.03, 0.0015, 1.0);
+  pid_s.Init(0.04, 0.0015, 1.0);
   pid_t.Init(0.2, 0.0000, 0.0);
   
   start = std::chrono::system_clock::now();
@@ -132,15 +132,14 @@ int main()
           }
 
 
-          // DEBUG
+          // running time
           auto end = std::chrono::system_clock::now();
           std::chrono::duration<double> elapsed_seconds = end-start;
-          //std::time_t end_time = std::chrono::system_clock::to_time_t(end);
-
-          std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";//<< "finished computation at " << std::ctime(&end_time)
+          
 
           // DEBUG
           std::cout << " -------------------------- " << std::endl;
+          std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
           std::cout << "CTE: " << cte << std::endl;
           std::cout << "pid_s.Kp: " << pid_s.Kp << " pid_s.Ki: " << pid_s.Ki << " pid_s.Kd: " << pid_s.Kd << std::endl; 
           std::cout << "P_part: " << P_part << " I_part:  " << I_part << " D_part:" << D_part << std::endl; 
