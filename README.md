@@ -8,10 +8,18 @@ In this project you'll revisit the lake race track from the Behavioral Cloning P
 
 The simulator will provide you the cross track error (CTE) and the velocity (mph) in order to compute the appropriate steering angle.
 
-<img src="./image/vedio.gif" style="width:80%" >
+After tuning, the car could run at 65MPH in staight line, and pass through the corner smoothly.
+
+<img src="./image/vedio.gif" style="width:70%" >
 
 
 # Control structure
+Addition to the normal PID controller
+
+- An smooth part after the controller, in every cycle, the output only change in an limited area. It is like an smooth filter.
+- Limit after the smooth part, the steering angle only in +/- 0.5
+- An addition P part, if the CTE is too big, add more steering output
+
 <img src="./image/control_structure.png" style="width:90%" >
 
 ## Basic Build Instructions
@@ -51,3 +59,6 @@ The simulator will provide you the cross track error (CTE) and the velocity (mph
 
 9) Kp = 0.04, Ki=0.0015, Kd=1.0,P_add=0.12 limit= 0.5, speed = 60
 smaller Kp, bigger Ki
+
+# Addition 
+The PID control is only effect with error, to acheive an more smooth behaviour, it need an precontrol part. 
